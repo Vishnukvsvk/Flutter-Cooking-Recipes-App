@@ -29,19 +29,17 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    
-    // FirebaseAdMob.instance.initialize(appId: "ca-app-pub-6313643779593552~8721139498").then((response){
-    //     myBanner..load()..show();
-    //});
     return Scaffold(
       backgroundColor: Colors.orange[100],
       appBar: AppBar(
         actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.search),
-              onPressed: (){Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => SearchBar()));},
-            ),
+            icon: Icon(Icons.search),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SearchBar()));
+            },
+          ),
         ],
         title: Text(
           "Aha Emi Ruchi",
@@ -59,13 +57,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 return Text("Loading...");
               } else {
                 return Expanded(
-                                  child: SizedBox(
+                  child: SizedBox(
                     height: 200,
-                                    child: ListView.builder(
+                    child: ListView.builder(
                       itemCount: snapshot.data.documents.length,
                       itemBuilder: (context, index) {
-                        DocumentSnapshot mypost =
-                            snapshot.data.documents[index]; //getting the document
+                        DocumentSnapshot mypost = snapshot
+                            .data.documents[index]; //getting the document
                         return Stack(
                           children: <Widget>[
                             Container(
@@ -82,13 +80,18 @@ class _MyHomePageState extends State<MyHomePage> {
                                         FlipCard(
                                           direction: FlipDirection.HORIZONTAL,
                                           front: Container(
-                                            width: MediaQuery.of(context).size.width,
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
                                             height: 200.0,
-                                            child: Image.network('${mypost['image']}',
+                                            child: Image.network(
+                                                '${mypost['image']}',
                                                 fit: BoxFit.fill),
                                           ),
                                           back: Container(
-                                            width: MediaQuery.of(context).size.width,
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
                                             height: 200.0,
                                             color: Colors.white,
                                             child: Text("Recipe"),
@@ -97,7 +100,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                         SizedBox(height: 10.0),
                                         InkWell(
                                           child: Container(
-                                            width: MediaQuery.of(context).size.width,
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
                                             height: 20.0,
                                             child: Center(
                                                 child: Text(
@@ -108,7 +113,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                                   color: Colors.blueGrey),
                                             )),
                                           ),
-                                          onTap: () => launch('${mypost['url']}'),
+                                          onTap: () =>
+                                              launch('${mypost['url']}'),
                                         ),
                                       ],
                                     ),
@@ -161,7 +167,6 @@ class _MyHomePageState extends State<MyHomePage> {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => ChannelInfo()));
             }),
-            
           ],
         ),
       ),
@@ -212,7 +217,3 @@ class CustomTile extends StatelessWidget {
     );
   }
 }
-
-
-
-
